@@ -1,14 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Topics</h1>
-
-<div id="topics">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
   <% @topics.each do |topic| %>
-    <%= render topic %>
-    <p>
-      <%= link_to "Show this topic", topic %>
-    </p>
-  <% end %>
+  <div class="col">
+<div class="card text-center border-primary" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= topic.name%></h5>
+    <h7><%= link_to "Click Here",topic_path(topic.id),class: 'btn btn-outline-primary'%></h7>
+  </div>
 </div>
-
-<%= link_to "New topic", new_topic_path %>
+</div>
+<% end %>
+</div>
