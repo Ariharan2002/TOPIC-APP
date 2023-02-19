@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @topic %>
+<% for post in @topic.posts %>
+  <ul>
+    <li><%= post.title %></li>
+    <li><%= post.body %></li>
+  </ul>
+<div>
+  <% end %>
+  <%= link_to "Edit this topic", edit_topic_path(@topic) %> |
+  <%= link_to "Add Post", topic_posts_path(@topic) %>
+  <%= link_to "Back to topics", topics_path %>
+
+  <%= button_to "Destroy this topic", @topic, method: :delete %>
+</div>
