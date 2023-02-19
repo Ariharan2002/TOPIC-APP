@@ -1,0 +1,8 @@
+<% unless !comment.persisted? %>
+  <div class="card ">
+   <div class="card-body">
+    <%= comment.stuff %> | <%= link_to "Destroy Comment", [comment.post, comment], class: 'btn btn-outline-danger', data: {turbo_method: :delete,turbo_confirm: "Are you sure?"} %>
+    </div>
+  </div>
+
+<% end %>

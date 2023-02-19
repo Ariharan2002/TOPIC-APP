@@ -1,6 +1,3 @@
-<p style="color: green"><%= notice %></p>
-<%= render @post %>
-<h2>Add a comment:</h2>
 <div class="card my-1">
   <div class="card-body">
     <p class="font-weight-bold">Comments</p>
@@ -12,8 +9,3 @@
       <%= f.submit 'Submit', class: 'btn btn-primary' %>
     </div>
   </div>
-<% end %>
-<%= render @post.comments %>
-<div>
-  <%= link_to "Go to posts", topic_posts_path,class: 'btn btn-outline-secondary' %>
-</div>
