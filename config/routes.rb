@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  root 'entry#index'
+  get 'en' => 'entry#index'
   resources :tags
   resources :topics do
     resources :posts

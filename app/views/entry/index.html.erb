@@ -1,0 +1,16 @@
+<% @post.each do |post| %>
+<div class="card border-primary mb-3" style="max-width: 18rem;">
+  <h5 class="card-header"><strong><%= post.topic.name %></strong></h5>
+  <div class="card-body">
+    <div class="bl"><strong><%= post.title %></strong></div>
+    <hr/>
+    <p class="card-text">"<%= post.body %>"</p>
+    <% post.tags.each do |tag| %>
+    <%= link_to tag, style:"text-decoration:none" do %>
+      <span class="btn btn-outline-dark"><%= tag.tag_name.capitalize %></span>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+<% end %>
+<%= will_paginate @post, class: "apple_pagination" %>

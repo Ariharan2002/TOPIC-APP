@@ -18,7 +18,7 @@
 <% end %>
 </div>  
   <br/>
-
-  <%= link_to 'Add Post', topic_posts_path(@topic),class: 'btn btn-outline-primary'%> |
+  <%= link_to 'Add Post', new_topic_post_path(@topic),class: 'btn btn-outline-primary'%>
+  <%= link_to 'Available Posts', topic_posts_path(@topic),class: 'btn btn-outline-primary'%>
   <%= link_to "Back to topics", topics_path,class: 'btn btn-outline-secondary' %>
 
