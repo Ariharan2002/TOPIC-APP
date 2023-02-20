@@ -1,0 +1,11 @@
+<div id="<%= dom_id tag %>">
+  <p>
+    <strong>Name:</strong>
+    <%= tag.tag_name %>
+  </p>
+  <% tag.taggings.each do |tagging| %>
+    <h3>posts</h3>
+    <%= render 'posts/post', post: tagging.post %>
+    <hr />
+  <% end %>
+</div>

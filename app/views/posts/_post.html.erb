@@ -11,7 +11,12 @@
 
   <p>
     <strong>Topic:</strong>
-    <%= post.topic_id %>
+    <%= post.topic.name%>
   </p>
-
+  <strong>Tags:</strong>
+  <% post.tags.each do |tag| %>
+    <%= link_to tag, style:"text-decoration:none" do %>
+      <span class="btn btn-secondary"><%= tag.tag_name.capitalize %></span>
+    <% end %>
+  <% end %>
 </div>

@@ -22,8 +22,8 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = @topic.posts.build(post_params)
-
+    @post = @topic.posts.build(post_params.except(:tags))
+    create_or_delete_posts_tags(@post,params[:post][:tags])
     respond_to do |format|
       if @post.save
         format.html { redirect_to topic_posts_path(@topic), notice: "Post was successfully created." }
@@ -37,8 +37,9 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    create_or_delete_posts_tags(@post,params[:post][:tags])
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(post_params.except(:tags))
         format.html { redirect_to topic_posts_path(@topic), notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -59,6 +60,14 @@ class PostsController < ApplicationController
   end
 
   private
+  def create_or_delete_posts_tags(post,tags)
+    post.taggings.destroy_all
+    tags = tags.strip.split(',')
+    tags.each do |tag|
+      post.tags << Tag.find_or_create_by(tag_name:tag)
+    end  
+  end
+
     def set_topic
       @topic=Topic.find(params[:topic_id])
     end
@@ -69,6 +78,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :topic_id)
+      params.require(:post).permit(:title, :body, :topic_id, :tag_name)
     end
 end

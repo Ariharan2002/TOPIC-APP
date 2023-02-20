@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_19_160743) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_040321) do
   create_table "comments", force: :cascade do |t|
     t.text "stuff"
     t.integer "post_id", null: false
@@ -28,6 +28,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_160743) do
     t.index ["topic_id"], name: "index_posts_on_topic_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_taggings_on_post_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -36,4 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_160743) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "topics"
+  add_foreign_key "taggings", "posts"
+  add_foreign_key "taggings", "tags"
 end

@@ -11,21 +11,16 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="form field-group">
+    <%= form.text_field :title, class: "form-control", placeholder: "Title of Post" %>
   </div>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+  <div class="form field-group">
+    <%= form.text_area :body,class: "form-control", placeholdere: "Post content" %>
   </div>
-
-  <div>
-    <%= form.label :topic_id, style: "display: block" %>
-    <%= form.text_field :topic_id %>
-  </div>
-
+<div class="form field-group">
+    <%= form.text_field :tags, value: post.tags.map(&:tag_name).join(","), class: "form-control", placeholder: "Add Tag" %>
+    </div>
   <div>
     <%= form.submit %>
   </div>
